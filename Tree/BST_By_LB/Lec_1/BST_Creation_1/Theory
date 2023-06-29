@@ -1,0 +1,20 @@
+What is Binary Search Tree?
+
+Binary Search Tree is a node-based binary tree data structure which has the following properties:
+
+The left subtree of a node contains only nodes with keys lesser than the node’s key.
+The right subtree of a node contains only nodes with keys greater than the node’s key.
+The left and right subtree each must also be a binary search tree.
+
+
+Note : Each Node of BST should follow the properties of BST.
+
+Algo :
+
+----> Let's say user has entered a number 'n'
+
+----> if (n > root.val)
+        so, put it in the right part
+
+----> if (n < root.val)
+        so, put it in the left part

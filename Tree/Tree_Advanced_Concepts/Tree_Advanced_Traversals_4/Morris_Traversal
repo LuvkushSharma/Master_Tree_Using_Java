@@ -1,0 +1,41 @@
+/*
+
+Since in case of Recursion ham root par wapas aa jaate hain return hone par.
+Par in case of iterative it is not possible.
+So, in case of morris traversal we store the root node in the temporary node i.e current node.
+
+Algorithm :
+
+ ---> current = root
+
+ ---> while(root != NULL)
+
+      if left not exists
+         visit (current)
+         current = current -> right
+
+      else
+       (poorvaj)predecessor = find(current)
+
+        if(predecessor -> right == NULL)         |
+            predecessor -> right = current       |------> Creating Temporary Links using this
+            current = current -> left            |
+
+        else
+          predecessor -> right = NULL            |
+          visit (current)                        |------> Removing Temporary Links
+          current = current -> right             |
+
+---------------------------------------------
+In other traversal like level order, preorder , postorder , inorder , level order
+Time complexity is O(n)
+Space complexity is O(n)
+
+Advantage of using Morris Traversal :
+
+---> Space complexity is O(1)
+
+whereas Time complexity remains same O(n).
+
+
+*/

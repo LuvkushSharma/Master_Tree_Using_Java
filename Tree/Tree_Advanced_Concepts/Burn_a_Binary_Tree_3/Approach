@@ -1,0 +1,176 @@
+/*
+
+
+
+Given a binary tree and a node called target. Find the minimum time required to burn the complete binary tree if the target
+is set on fire. It is known that in 1 second all nodes connected to a given node get burned. That is its left child,
+right child, and parent.
+
+Rules fpr burning the nodes :
+
+1. Fire will spread constantly to the connected nodes only.
+
+2. Every node takes the same time to burn.
+
+3. A node burns only once.
+
+
+                                            1
+                                          /   \
+                                         2      3
+                                       /   \      \
+                                      4     5       6
+                                           /  \       \
+                                          7     8       9
+                                                         \
+                                                         10
+
+                    Let's say Target Node : 6
+
+                    in 1 sec 6 burns it's neighbouring nodes i.e 3 and 9
+                    in next 1 sec 3 burns it's neighbouring node i.e 1 and 9 burns it's neighbouring node i.e 10
+                    in another 1 sec  1 burns it's neighbouring node i.e 2
+                    in next 1 sec 2 burns it's neighbouring nodes i.e 4 and 5
+                    in another next 1 sec 5 burns it's neighbouring nodes i.e 7 and 8.
+
+                    And the whole tree burns in 5 sec.
+
+                    Target Node : 8
+                    Output : 7
+
+                    Explanation : If leaf with the value 8 is set on fire.
+                    After 1 sec: 5 is set on fire.
+                    After 2 sec: neighbouring nodes of 5 i.e 2,7 is set on fire.
+                    After 3 sec: neighbouring node of 2 i.e 4,1 is set on fire.
+                    After 4 sec: 3 is set on fire.
+                    After 5 sec: 6 is set on fire.
+                    After 6 sec: 9 is set on fire.
+                    After 7 sec: 10 is set on fire.
+
+                    It takes 7s to burn the complete tree.
+
+
+*/
+
+/*
+
+------------------------- Intuition ------------------------
+
+On standing a node we have three nodes to burn i.e
+
+1. Left child if exists.
+
+2. Right child if exists.
+
+3. It's Parent node.
+
+Ex :
+
+If we set fire on node : 5 then in 1 sec we have to burn :
+
+1. It's left child i.e 7.
+
+2. It's right child i.e 8.
+
+3. It's parent i.e 2.
+
+It is easy to burn left child and right child i.e simply pass root.left and root.right.
+
+But we are unable to go to root.parent.
+
+i.e we will do mapping of a node with it's parent.
+
+
+*/
+
+/*
+
+Approach :
+
+Step - 1:
+
+we have the neighbouring nodes of a node as it's left and right child
+i.e
+           2
+             \
+              5
+             /  \
+            7    8 <------ Burn 8 (target)
+
+neighbouring nodes of 5 are 7 and 2.
+We can easily go to the 7 as it is the left child of 5 but going on to the node having data as 2 is difficult
+
+So, we will store the parent node also.
+Since for a node we have 3 things to burn
+1. It's left child i.e 7 here
+2. It's right child i.e 8 already burnt.
+3. And it's parent i.e 2
+
+----------------------------------------------------
+So, Create mapping of each node with it's parent. |
+                                                   |
+Map < TreeNode, TreeNode > NodeToParent;                 | <---- Time complexity is O(n)
+----------------------------------------------------
+
+Step - 2:
+------------------
+Find target node. |  <---- Time complexity is O(Height)
+-------------------
+
+
+Step - 3:
+
+We will create a map which will store that node that we are going to burnt is visited or not.
+If it is visited it means we had burnt that node already.
+
+Map < TreeNode , Boolean > visited;
+
+Boolean will tell true --> if node is visited
+or false if node is not visited.
+
+In the starting assign 8 as true.
+
+Queue <TreeNode> ---> Traversal using target node.
+
+initially we will store target in the queue.
+
+-----------------------
+8                        ---->  queue.
+----------------------
+
+then 5 will be inserted.
+
+-----------------------
+pop(8) |  5   |                      ---->  queue.
+----------------------
+
+Checking Left child, Right child and parent node of a node.
+
+Like for 7 ---> no left child and right child is there it has only it's parent node.
+So, now store that parent node into the queue.
+
+And initialize time = 0;
+
+
+
+Step - 4:
+
+if there was any addition in queue.
+Than check is it visited or not.
+If not i.e true then time++.
+
+If false then no incrementing in the time.
+
+-------------------------
+pop(8) |  pop(5)   |  7                     ---->  queue.
+-------------------------
+
+And map will look like :
+
+-----------------------------------------------------------------------------------------------
+8 : true | 5 : true | 7 : true | 2 : false |  3 : false |  4 : false |  5 : false | 6 : false |.....
+-----------------------------------------------------------------------------------------------
+
+
+
+*/

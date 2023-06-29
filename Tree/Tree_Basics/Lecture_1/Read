@@ -1,0 +1,100 @@
+
+Tree is a non-linear data structure.
+
+---------------- Tree Terminologies ---------------------
+
+
+                              1
+                           /     \
+                          3       7
+                        /   \    /
+                       4     9  8
+
+1) Root Node : Top node of the tree or the origination of the tree.
+
+Here 1 is the root node.
+
+2) Children :
+
+3 and 7 are childrens of 1 similarly, 4 and 9 are the childrens of 3.
+
+
+3) Parent :
+
+3 is the parent of 4 and 9, 1 is the parent of 3 and 7. and 7 is the parent of 8.
+
+
+4) Siblings :
+
+children having same parent.
+
+Like, 4 and 9 are siblings as they have the same parent i.e 3
+Similarly, 3 and 7 are the siblings since both have the same parent i.e 1.
+
+
+5) Ancestors :
+
+Fix a particular node and goes upward then, the nodes comes during the upward movements  will be the
+ancestor of that particular node.
+
+Ex: 3, 1 are the ancestor of 4
+
+
+6) Descendent :
+
+7 and 8 are descenents of 1. Similarly, 3 and 9 are the descendents of 1
+
+7) Leaf :
+
+Nodes which  does not contains childs.
+
+Ex: 4,9 and 8
+
+
+Binary Tree : It has at max 2 childs i.e <=2 nodes.
+
+Types of binary trees :
+
+1) Full Binary Tree or Strict Binary Tree : All levels have either 0 or 2 children.
+
+2) Complete Binary Tree : a. All levels are completely filled except the last level.
+                          b. The last level has all nodes as left as possible.
+
+3) Perfect Binary Tree : All leaf nodes are at the same level.
+
+4) Balanced Binary Tree : Height of a tree at max can be log(N) where N is the number of nodes.
+
+5) Degenerate Binary Tree : Whenever every node has a single child only.
+
+6) Skewed Tree :
+
+   a) Left skewed : All the childs are on the left side.
+   b) Right skewed : All the childs are on the right side.
+
+
+
+
+ To maintain the hierarchy we use tree data structure
+
+ Tree which are important for the interviews.
+
+     1. Binary tree
+     2. Binary search tree (BST)
+     3. Generic tree
+
+     and trie is one of the generic tree.
+
+
+                     10
+                   /  |  \
+                  20  30  40
+                /  \      / | \
+               50  60    78 44 12
+                  /  \
+                 -11 65
+
+     Generic tree main kitne bhi child ho sakte hain.
+
+     Childs jinke paas further child nhi hain woh leaf node hongye. EX : 50 , -11 , 65 , 30 , 78 , 44 and 12
+
+     10 is the root node.

@@ -1,0 +1,109 @@
+/*
+
+
+Given a binary tree, flatten it into linked list in place. Usage of auxiliary data structure is not allowed.
+After flattening, left of each node should point to NULL and right should contain next node in preorder.
+
+Time complexity : O(n)
+Space complexity : O(1)  <------- Ohh No!!
+
+Most of us was thinking to just print the preorder but it takes O(n) as the space complexity
+So, We'll use Morris traversal as it takes O(1) Space complexity.
+
+
+                                       1
+                                     /    \
+                                    2      5
+                                  /   \      \
+                                 3     4      6
+
+                                 Output : 1 2 3 4 5 6
+
+                    Explanation :
+                    After flattening, the tree looks
+                    like this
+
+                    1
+                      \
+                        2
+                          \
+                            3
+                              \
+                                4
+                                  \
+                                    5
+                                      \
+                                        6
+
+
+-------------- Important ---------------
+
+# Approach-1
+
+Most of us was thinking to do the preorder traversal and with that we will create the node at the same time.
+But this is wrong. As we had used another auxiliary data structure.
+We have to flatten the tree in place of given tree.
+
+
+# Approach-2
+
+Recursion ---> O(n) space complexity and time complexity.
+But we want to do it in the O(n) space complexity.
+
+
+# Approach-3
+
+Morris Traversal
+
+
+
+                                    Current Node
+                                       1
+                                     /
+                                    2      5         Link 4 with the right part of the tree.
+                                  /   \  /   \
+                                 3     4      6
+
+Step-1:
+Go to predecessor i.e 4
+
+4 -> right = current -> right;
+current -> right = NULL;
+current -> right = current -> left;
+current -> left = NULL;
+
+
+Algorithm :
+
+current = root
+
+while(current != NULL){
+
+    if current -> left exists
+    {
+           prev = current -> left;            |
+                                                     |
+           while(prev -> right != NULL){      |-------> Predecessor
+            prev = prev -> right;      |
+           }
+
+           predecessor -> right = current -> right;
+           current -> right = current -> left;
+
+    }
+
+    current = current -> right; // Now current at 2
+}
+
+
+
+                                       1
+                                     /
+                    Current Node   2      5         Link 4 with the right part of the tree.
+                                  /     /   \
+                                 3 --- 4      6
+                                 ^
+                                 |
+                             Predecessor
+
+*/
