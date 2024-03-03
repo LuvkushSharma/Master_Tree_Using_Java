@@ -189,10 +189,14 @@ public class sumOfTheLongestBloodlineOfTree {
 
         if (root == null) {
 
-            if (len >= maxLen) {
+            if (len > maxLen) {
+
+                maxSum = sum;
+                maxLen = len;
+
+            } else if (len == maxLen) {
 
                 maxSum = Math.max (sum , maxSum);
-                len = maxLen;
             }
 
             return;
