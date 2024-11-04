@@ -8,7 +8,7 @@ Algorithm :
 
  ---> current = root
 
- ---> while(root != NULL)
+ ---> while(current != NULL)
 
       if left not exists
          visit (current)
